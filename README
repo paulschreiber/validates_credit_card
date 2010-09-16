@@ -1,0 +1,16 @@
+ValidatesCreditCard
+===================
+
+Copyright (c) 2008 Stefan Natchev
+Originally found at http://code.google.com/p/validates-credit-card/
+
+Modifications by Paul Schreiber (http://paulschreiber.com/)
+- can now pass :if and :unless to validators
+- added method to detect card type based on card number (card_type_from_number)
+- added list of card prefixes from "Credit card validation extension for jQuery Validation plugin"
+	by Jack Killpatrick
+	http://www.ihwy.com/labs/jquery-validate-credit-card-extension.aspx
+	which is an enhancment of work by John Gardner
+	http://www.braemoor.co.uk/software/creditcard.shtml
+
+Last modified 15 September 2010
