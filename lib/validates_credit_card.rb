@@ -20,9 +20,8 @@ module ActiveRecord::Validations::ClassMethods
   VALID_OPTION_KEYS = [:if, :unless, :width, :against]
   
   def validate_options(options)
-    options.assert_valid_keys(VALID_OPTION_KEYS)
+    options.assert_valid_keys(VALID_OPTION_KEYS) unless options.nil?
   end
-  
 
   def card_type_from_number
     CARD_DATA.each do |card, data|
@@ -37,7 +36,7 @@ module ActiveRecord::Validations::ClassMethods
   # I don't think anyone doing the right thing will be validating more than
   # one type and one card number per record.
   def validates_credit_card(*attr_names)
-    configuration = attr_names.pop if attr_names.last.is_a?(Hash)
+    configuration = attr_names.last.is_a?(Hash) ? attr_names.pop : {}
     validate_options(configuration)
     card_number = attr_names.first
     card_type = attr_names.last
@@ -52,7 +51,7 @@ module ActiveRecord::Validations::ClassMethods
   # example
   # validates_credit_card_type :card_type, :against => :card_number, :with => DEFAULT_CREDIT_CARD_TYPES
   def validates_credit_card_type(*attr_names)
-    configuration = attr_names.pop if attr_names.last.is_a?(Hash)
+    configuration = attr_names.last.is_a?(Hash) ? attr_names.pop : {}
     validate_options(configuration)
     card_type = attr_names.first
 
@@ -68,7 +67,7 @@ module ActiveRecord::Validations::ClassMethods
   end
 
   def validates_credit_card_number(*attr_names)
-    configuration = attr_names.pop if attr_names.last.is_a?(Hash)
+    configuration = attr_names.last.is_a?(Hash) ? attr_names.pop : {}
     validate_options(configuration)
     card_number = attr_names.first
     
