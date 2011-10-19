@@ -17,7 +17,7 @@ module ActiveRecord::Validations::ClassMethods
     :LaserCard => { :lengths => [16,17,18,19], :prefixes => [6304,6706,6771,6709] },
   }
   
-  VALID_OPTION_KEYS = [:if, :unless, :width, :against]
+  VALID_OPTION_KEYS = [:if, :unless, :with, :against]
   
   def validate_options(options)
     options.assert_valid_keys(VALID_OPTION_KEYS) unless options.nil?
@@ -95,7 +95,7 @@ module ActiveRecord::Validations::ClassMethods
     if card_number =~ /^4/ and [13,16].include?(card_number.size)
       :visa
     elsif card_number =~ /^5[1-5]/ and card_number.size == 16
-      :master_card
+      :mastercard
     elsif card_number =~ /^34|37/ and card_number.size == 15
       :amex
     elsif card_number =~ /^6011|65/ and card_number.size == 16
